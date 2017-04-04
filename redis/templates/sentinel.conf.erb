@@ -1,0 +1,14 @@
+# Host and port we will listen for requests on
+bind 0.0.0.0
+port 16379
+
+#
+# "redis-cluster" is the name of our cluster
+#
+# each sentinel process is paired with a redis-server process
+#
+sentinel monitor redis-cluster master_node_ip_variable 6379 2
+sentinel down-after-milliseconds redis-cluster 5000
+sentinel parallel-syncs redis-cluster 1
+sentinel failover-timeout redis-cluster 10000
+

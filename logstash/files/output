@@ -1,0 +1,45 @@
+input {
+  redis {
+    host => "${myArray3[$i]}"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+  redis {
+    host => "${myArray3[$i]}"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+  redis {
+    host => "${myArray3[$i]}"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+  redis {
+    host => "${myArray3[$i]}"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+  redis {
+    host => "${myArray3[$i]}"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+}
+output {
+  elasticsearch {
+    hosts => ["10.18.1.100:9200"]
+    manage_template => false
+    index => "filebeat-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+  }
+}

@@ -1,0 +1,67 @@
+#!/bin/bash
+
+filename=/opt/redis_ip_all.txt
+declare -a myArray3
+myArray3=(`cat "$filename"`)
+
+x=`cat /opt/redis_ip_all.txt | wc -l`
+echo $x
+number_of_redis_nodes=$((x - 1))
+echo $number_of_redis_nodes
+
+echo "input {" > output
+for (( i = 0 ; i < $number_of_redis_nodes ; i++))
+do
+  echo "Element [$i]: ${myArray3[$i]}"
+#  echo server redis_$i ${myArray3[$i]}:6379 check inter 1s >> output
+  echo "  redis {
+    host => "${myArray3[$i]}"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }" >> output
+done
+echo "}" >> output
+
+
+filename=/opt/elasticsearch_ip.txt
+declare -a myArray4
+myArray4=(`cat "$filename"`)
+
+y=`cat /opt/elasticsearch_ip.txt | wc -l`
+echo $y
+number_of_redis_nodes=$((y - 1))
+echo $number_of_es_nodes
+
+
+echo "output {" >> output
+for (( i = 0 ; i < $y ; i++))
+do
+  echo "Element [$i]: ${myArray4[$i]}"
+#  echo server redis_$i ${myArray3[$i]}:6379 check inter 1s >> output
+  echo "  elasticsearch {" >> output
+  echo "    hosts => ["10.18.1.100:9200"]" >> output
+  echo "    manage_template => false" >> output
+  echo '    index => "filebeat-%{+YYYY.MM.dd}"' >> output
+  echo '    document_type => "%{[@metadata][type]}"' >> output
+  echo "  }" >> output
+done
+
+#elasticsearch_ip.txt
+
+#echo ${myArray1[0]}		#ip1
+#echo ${myArray1[1]}             #ip2
+#echo ${myArray1[2]}		#ip3
+#echo ${myArray1[3]}		#backend bk_redis port
+
+#sed -i "s/redis_ip1/${myArray1[0]}/g" /etc/haproxy/haproxy.cfg
+#sed -i "s/redis_ip2/${myArray1[1]}/g" /etc/haproxy/haproxy.cfg
+#sed -i "s/redelasticis_ip3/${myArray1[2]}/g" /etc/haproxy/haproxy.cfg
+#sed -i "s/bk_redis_port/${myArray1[3]}/g" /etc/haproxy/haproxy.cfg
+
+
+#echo server redis_6379 10.18.1.100:6379 check inter 1s >> output
+# server redis_7031 10.18.1.100:6379 check inter 1s
+# server redis_7032 10.18.1.100:6379 check inter 1s
+

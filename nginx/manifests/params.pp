@@ -1,0 +1,18 @@
+class nginx::params {
+#	$kibana_group = "haproxy"
+#	$kibana_user = "haproxy"
+	$nginx_archive_deb1 = "fontconfig-config_2.11.0-0ubuntu4.2_all.deb"
+        $nginx_archive_deb2 = "libfontconfig1_2.11.0-0ubuntu4.2_amd64.deb"
+        $nginx_archive_deb3 = "libjpeg-turbo8_1.3.0-0ubuntu2_amd64.deb"
+        $nginx_archive_deb4 = "libjpeg8_8c-2ubuntu8_amd64.deb"
+        $nginx_archive_deb5 = "libjbig0_2.0-2ubuntu4.1_amd64.deb"
+        $nginx_archive_deb6 = "libtiff5_4.0.3-7ubuntu0.6_amd64.deb"
+        $nginx_archive_deb7 = "libvpx1_1.3.0-2_amd64.deb"
+        $nginx_archive_deb8 = "libxpm4_3.5.10-1ubuntu0.1_amd64.deb"
+        $nginx_archive_deb9 = "libgd3_2.1.0-3ubuntu0.6_amd64.deb"
+        $nginx_archive_deb10 = "libxslt1.1_1.1.28-2build1_amd64.deb"
+        $nginx_archive_deb11 = "nginx-common_1.4.6-1ubuntu3.7_all.deb"
+        $nginx_archive_deb12 = "nginx-core_1.4.6-1ubuntu3.7_amd64.deb"
+        $nginx_archive_deb13 = "nginx_1.4.6-1ubuntu3.7_all.deb"
+	$nginx_archive_deb14 = "apache2-utils_2.4.7-1ubuntu4.13_amd64.deb"
+}

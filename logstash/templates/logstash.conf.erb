@@ -1,0 +1,43 @@
+#input {
+#  redis {
+#    host => "redis_server_ip"
+#    port => "redis_port"
+#    type => "redis-input"
+#    data_type => "list"
+#    key => "redis"
+#  }
+#}
+#
+input {
+  redis {
+    host => "10.18.1.100"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+  redis {
+    host => "10.18.22.146"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+  redis {
+    host => "10.18.22.149"
+    port => "6379"
+    type => "redis-input"
+    data_type => "list"
+    key => "redis"
+  }
+
+}
+
+output {
+  elasticsearch {
+    hosts => ["10.18.1.100:9200"]
+    manage_template => false
+    index => "filebeat-%{+YYYY.MM.dd}"
+    document_type => "%{[@metadata][type]}"
+  }
+}
